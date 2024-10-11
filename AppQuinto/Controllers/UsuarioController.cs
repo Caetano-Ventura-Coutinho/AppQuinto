@@ -34,24 +34,33 @@ namespace AppQuinto.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult AtualizarUsuario(int id)
+        public IActionResult AtualizarUsuario(int Id)
         {
-            return View(_usuarioRepository.ObterUsuario(id));
+            return View(_usuarioRepository.ObterUsuario(Id));
         }
         [HttpPost]
         public IActionResult AtualizarUsuario(usuario Usuario)
         {
-            if (ModelState.IsValid)
-            {
-                _usuarioRepository.Atualizar(Usuario);
-                return RedirectToAction(nameof(Index));
-            }
-            return null;
+            _usuarioRepository.Atualizar(Usuario);
+
+            return RedirectToAction(nameof(Index));
         }
         [HttpGet]
         public IActionResult ExcluirUsuario(int id)
         {
             _usuarioRepository.Excluir(id);
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpGet]
+        public IActionResult DetalhesUsuario(int Id)
+        {
+            return View(_usuarioRepository.ObterUsuario(Id));
+        }
+        [HttpPost]
+        public IActionResult DetalhesUsuario(usuario Usuario)
+        {
+            _usuarioRepository.Atualizar(Usuario);
+
             return RedirectToAction(nameof(Index));
         }
 

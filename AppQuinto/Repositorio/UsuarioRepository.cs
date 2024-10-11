@@ -68,16 +68,12 @@ namespace AppQuinto.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySql))
             {
                         conexao.Open();
-                        MySqlCommand cmd = new MySqlCommand("select * from usuario");
+                        MySqlCommand cmd = new MySqlCommand("select * from usuario", conexao);
 
                         MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
-
-                cmd.Connection = conexao;
-                using (da)
-                {
-                    da.Fill(dt);
-                }
+                        da.Fill(dt);
+                
 
 
                 conexao.Clone();
