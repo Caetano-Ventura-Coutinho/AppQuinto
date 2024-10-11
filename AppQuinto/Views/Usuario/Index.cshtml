@@ -1,0 +1,36 @@
+﻿@model IEnumerable<AppQuinto.Models.usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<p>
+    <a class="btn btn-primary" asp-action="CadastrarUsuario" asp-asp-controller="usuario">Create New</a>
+</p>
+<table class="table">
+
+        @foreach (usuario Usuario in Model)
+            {
+                <tr>
+                    <td>@Usuario.IdUsu</td>
+                    <td>@Usuario.nomeUsu</td>
+                    <td>@Usuario.Cargo</td>
+                    <td>@Usuario.DataNasc.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <button type ="button" class="btn btn-warning">
+                            @Html.ActionLink("Editar", "AtualizarUsuario", new { id = Usuario.IdUsu})
+                        </button>
+                        <button type="button" class="btn btn-secondary">
+                            @Html.ActionLink("Detalhes", "DetalhesUsuario", new { id = Usuario.IdUsu })
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                            @Html.ActionLink("Excluir", "ExcluirUsuario", new { id = Usuario.IdUsu },
+                                    new{onclick = "return confirm('Deseja realmente desativar?');" })
+                        </button>
+                    </td>
+                </tr>
+            
+        }
+    </tbody>
+</table>

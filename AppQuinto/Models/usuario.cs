@@ -4,7 +4,7 @@ namespace AppQuinto.Models
 {
     public class usuario
     {
-        [Display(Name = "Codigo")]
+        [Display(Name = "Código")]
         public int? IdUsu { get; set; }
 
         [Display(Name = "Nome Completo")]
