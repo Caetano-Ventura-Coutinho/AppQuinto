@@ -10,6 +10,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

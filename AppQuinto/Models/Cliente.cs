@@ -9,12 +9,12 @@ namespace AppQuinto.Models
 
         [Display(Name = "Nome Completo")]
         [Required(ErrorMessage = "O campo nome é obrigatorio")]
-        public string nomeUsu { get; set; }
+        public string NomeCli { get; set; }
 
         [Display(Name = "Telefone")]
         [Required(ErrorMessage = "O campo telefone é obrigatorio")]
-        [DataType(DataType.PhoneNumber)]
-        public int Telefone { get; set; }
+        
+        public ulong Telefone { get; set; }
 
         [Display(Name = "Nascimento")]
         [Required(ErrorMessage = "O campo nascimento é obrigatorio")]

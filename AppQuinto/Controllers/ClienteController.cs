@@ -31,7 +31,7 @@ namespace AppQuinto.Controllers
             {
                 _ClienteRepository.Cadastrar(cliente);
             }
-            return View();
+            return RedirectToAction(nameof(Index));
         }
         [HttpGet]
         public IActionResult AtualizarCliente(int Id)

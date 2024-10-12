@@ -7,53 +7,31 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="CadastrarCliente" asp-asp-controller="Cliente">Create New</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdCli)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nomeUsu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataNasc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdCli)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nomeUsu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataNasc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+
+        @foreach (Cliente cliente in Model)
+            {
+                <tr>
+                    <td>@cliente.IdCli</td>
+                    <td>@cliente.NomeCli</td>
+                    <td>@cliente.Email</td>
+                    <td>@cliente.DataNasc.ToString("dd/MM/yyyy")</td>
+                    <td>@cliente.Telefone</td>
+                    <td>
+                        <button type ="button" class="btn btn-warning">
+                            @Html.ActionLink("Editar", "Atualizarcliente", new { id = cliente.IdCli})
+                        </button>
+                        <button type="button" class="btn btn-secondary">
+                            @Html.ActionLink("Detalhes", "Detalhescliente", new { id = cliente.IdCli })
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                            @Html.ActionLink("Excluir", "Excluircliente", new { id = cliente.IdCli},
+                                    new{onclick = "return confirm('Deseja realmente desativar?');" })
+                        </button>
+                    </td>
+                </tr>
+        }
     </tbody>
 </table>

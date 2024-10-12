@@ -20,13 +20,12 @@ namespace AppQuinto.Repositorio
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand("insert into cliente(NomeUsu, Telefone, DataNasc, Email)" +
-                                                    "values (@NomeUsu, @Telefone, STR_TO_DATE(@DataNasc,'%d/%m/%Y'), @Email)", conexao);
+                MySqlCommand cmd = new MySqlCommand("insert into cliente(NomeCli, Telefone, DataNasc, Email)" +
+                                                    "values (@NomeCli, @Telefone, STR_TO_DATE(@DataNasc,'%d/%m/%Y'), @Email)", conexao);
 
-                cmd.Parameters.Add("@NomeUsu", MySqlDbType.VarChar).Value = cliente.nomeUsu;
+                cmd.Parameters.Add("@NomeCli", MySqlDbType.VarChar).Value = cliente.NomeCli;
                 cmd.Parameters.Add("@Telefone", MySqlDbType.Decimal).Value = cliente.Telefone;
                 cmd.Parameters.Add("@DataNasc", MySqlDbType.VarChar).Value = cliente.DataNasc.ToString("dd/MM/yyyy");
-                cmd.Parameters.Add("@NomeUsu", MySqlDbType.VarChar).Value = cliente.nomeUsu;
                 cmd.Parameters.Add("@Email", MySqlDbType.VarChar).Value = cliente.Email;
 
                 cmd.ExecuteNonQuery();
@@ -40,9 +39,9 @@ namespace AppQuinto.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySql))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("update cliente set nomeUsu=@NomeUsu, Cargo=@Cargo," +
-                                                    "DataNasc=@DataNasc Email=@Email Where IdCli=@IdCli;", conexao);
-                cmd.Parameters.Add("@NomeUsu", MySqlDbType.VarChar).Value = cliente.nomeUsu;
+                MySqlCommand cmd = new MySqlCommand("update cliente set NomeCli=@NomeCli, Telefone=@Telefone," +
+                                                    "DataNasc=@DataNasc, Email=@Email Where IdCli=@IdCli;", conexao);
+                cmd.Parameters.Add("@NomeCli", MySqlDbType.VarChar).Value = cliente.NomeCli;
                 cmd.Parameters.Add("@Telefone", MySqlDbType.Decimal).Value = cliente.Telefone;
                 cmd.Parameters.Add("@DataNasc", MySqlDbType.VarChar).Value = cliente.DataNasc.ToString("yyyy/MM/dd");
                 cmd.Parameters.Add("@IdCli", MySqlDbType.VarChar).Value = cliente.IdCli;
@@ -87,8 +86,8 @@ namespace AppQuinto.Repositorio
                         new Cliente
                         {
                             IdCli = Convert.ToInt32(dr["IdCli"]),
-                            nomeUsu = (string)dr["nomeUsu"],
-                            Telefone = Convert.ToInt32(dr["Telefone"]),
+                            NomeCli = (string)dr["NomeCli"],
+                            Telefone = Convert.ToUInt64(dr["Telefone"]),
                             DataNasc = Convert.ToDateTime(dr["DataNasc"]),
                             Email = (string)dr["Email"]
                         });
@@ -113,8 +112,8 @@ namespace AppQuinto.Repositorio
                 while (dr.Read())
                 {
                     cliente.IdCli = Convert.ToInt32(dr["IdCli"]);
-                    cliente.nomeUsu = (string)dr["nomeUsu"];
-                    cliente.Telefone = Convert.ToInt32(dr["Telefone"]);
+                    cliente.NomeCli = (string)dr["NomeCli"];
+                    cliente.Telefone = Convert.ToUInt64(dr["Telefone"]);
                     cliente.DataNasc = Convert.ToDateTime(dr["DataNasc"]);
                     cliente.Email = (string)dr["Email"];
                 };
